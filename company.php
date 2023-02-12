@@ -168,9 +168,32 @@
                                 <tbody>
 
                                     <?php
-                                        $com = 1;
-                                        #$mid = $_GET['sub'];
+                                        $com = "1";
                                         $con = mysqli_connect("localhost", "root", "", "ugo");
+                                        $selectquery= " SELECT *
+                                        FROM problem_given_to_company
+                                        INNER JOIN complaint ON problem_given_to_company.pid= complaint.pid where problem_given_to_company.cid= $com";
+                                        // echo $selectquery;
+                                        $query= mysqli_query($con, $selectquery);
+                                        $nums= mysqli_num_rows($query);
+                                        // echo $selectquery;
+                                        while($res=mysqli_fetch_assoc($query))
+                                        {
+                                            // echo $selectquery;
+                                            ?>
+                                            <tr>
+                                                <th> <?php echo $res["p_disc"]; ?></th>
+                                                <th> <?php echo $res["picture"];?></th>
+                                                <th> <?php echo $res["address"] ?></th>
+                                                <th> <?php echo $res["u_name"] ?></th>
+                                                <th> <?php echo $res["phone_no"] ?></th>
+                                                <th><a href="share.php?mid=<?php echo $mid; ?>&companyid=<?php echo "1";?>&pid=<?php echo $res["pid"];?>" data-toggle="tooltip" data-placement="bottom" title="Like"> <button type="button" style="color:blue">Accept</button> </a>
+                                                    </th>
+                                                <th><a href="share.php?mid=<?php echo $mid; ?>&companyid=<?php echo "1";?>&pid=<?php echo $res["pid"];?>" data-toggle="tooltip" data-placement="bottom" title="Like"> <button type="button" style="color:blue">Complete</button> </a>
+                                                </th>
+                                            </tr>
+                                            <?php
+                                        }
                       
                                     ?>
                                 </tbody>
