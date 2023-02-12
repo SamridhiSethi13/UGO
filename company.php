@@ -121,12 +121,12 @@
         if (1) 
         {
             ?>
-        <div class="container" style="margin-top:15%">
+        <div class="container" style="margin-top:4%">
             <div class="row">
                 <div class="col-md-12">
                     <h4 style="color: black;text-transform:uppercase;font-size:40px;font-weight:900;font-family: 'Francois One', sans-serif;letter-spacing:7px"><?php 
                                                                                                                                 $company="company1";
-                                                                                                            echo $company; ?></h4>
+                                                                                                                                 echo $company; ?></h4>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-7">
@@ -168,13 +168,11 @@
                                 <tbody>
 
                                     <?php
-
-
                                         $com = 1;
                                         #$mid = $_GET['sub'];
                                         $con = mysqli_connect("localhost", "root", "", "ugo");
                       
-                    ?>
+                                    ?>
                                 </tbody>
                             </table>
                         </div>

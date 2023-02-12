@@ -30,7 +30,7 @@
         if($conn->query($sql) == true){
             //flag for successfully inserted
             $insert = true ;
-            echo "successfully inserted";
+            header("location: signin.php"); 
         } 
         else{
             echo "ERROR : $sql <br> $conn->error";
@@ -51,7 +51,7 @@
         padding: 20px;
         }
         body{
-        width: 100%;
+            width: 100%;
             height: 100vh;
             background-image: url('https://image.shutterstock.com/image-illustration/abstract-blue-white-gray-polygon-260nw-1451847182.jpg');
             background-position: center;
@@ -61,7 +61,7 @@
             align-items: center;
             justify-content: space-around;
             flex-direction: column;
-      }
+        }
 
         input[type="text"], input[type="number"], input[type="password"] {
         padding: 10px;
@@ -89,7 +89,7 @@
   </head>
   <body>
     <div class="container">
-      <h2>Register</h2>
+      <h2>Sign Up</h2>
       <form action="submit_signup.php" method="post">
         <label for="user_type">User Type:</label>
         <input type="integer" id="user_type" name="user_type" required><br><br>

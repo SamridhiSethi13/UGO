@@ -1,8 +1,5 @@
 <!doctype html>
-<?php
-ini_set('error_reporting', 0);
-ini_set('display_errors', 0);
-?> 
+
 
     <html lang="en">
 
@@ -126,7 +123,7 @@ ini_set('display_errors', 0);
         if (isset($_GET['search'])) 
         {
             ?>
-        <div class="container" style="margin-top:15%">
+        <div class="container" style="margin-top:4%">
             <div class="row">
                 <div class="col-md-12">
                     <h4 style="color: black;text-transform:uppercase;font-size:40px;font-weight:900;font-family: 'Francois One', sans-serif;letter-spacing:7px"><?php echo $_GET['search'] ?></h4>
@@ -168,33 +165,33 @@ ini_set('display_errors', 0);
                                 </thead>
 
                                 <tbody>
-
                                     <?php
 
 
                                         $filtervalues = $_GET['search'];
                                         $mid = $_GET['sub'];
                                         $con = mysqli_connect("localhost", "root", "", "ugo");
-                        $selectquery= "SELECT * FROM complaint WHERE p_name = $filtervalues and mid=$mid";
-                        // echo $selectquery;
-                        $query= mysqli_query($con, $selectquery);
-                        $nums= mysqli_num_rows($query);
-                        echo $nums."<br>";
-                        while($res=mysqli_fetch_assoc($query))
-                        {
-                            ?>
-                              <tr>
-                                <th> <?php echo $res["p_disc"]; ?></th>
-                                <th class="items"><?php
-                                echo $res["picture"];
-                                ?></th>
-                                <th class="items"> <?php  echo $res["address"] ?></th>
-                                <th class="items"> <?php  echo $res["u_name"] ?></th>
-                                <th class="items"> <?php  echo $res["phone_no"] ?></th>
-                            </tr>
-                            <?php
-                        }
-                    ?>
+                                        $selectquery= "SELECT * FROM complaint WHERE mid=$mid AND p_name like '%$filtervalues%'";
+                                        // echo $selectquery;
+                                        $query= mysqli_query($con, $selectquery);
+                                        $nums= mysqli_num_rows($query);
+                                        // echo $selectquery;
+                                        while($res=mysqli_fetch_assoc($query))
+                                        {
+                                            // echo $selectquery;
+                                            ?>
+                                            <tr>
+                                                <th> <?php echo $res["p_disc"]; ?></th>
+                                                <th> <?php echo $res["picture"];?></th>
+                                                <th> <?php echo $res["address"] ?></th>
+                                                <th> <?php echo $res["u_name"] ?></th>
+                                                <th> <?php echo $res["phone_no"] ?></th>
+                                                <th><a href="share.php?mid=<?php echo $mid; ?>&companyid=<?php echo "1";?>&pid=<?php echo $res["pid"];?>" data-toggle="tooltip" data-placement="bottom" title="Like"><i class="fa fa-share-alt" style="font-size:36px" style="color:grey"></i></a>
+                                                    </th>
+                                            </tr>
+                                            <?php
+                                        }
+                                    ?>
                                 </tbody>
                             </table>
                         </div>
@@ -205,9 +202,6 @@ ini_set('display_errors', 0);
 
 
     </div>
-
-
-
 
 <?php } ?>
     </body>
